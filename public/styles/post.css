@@ -1,0 +1,26 @@
+:root {
+  --light: #f9f7f7;
+  --soft: #dbe2ef;
+  --accent: #3f72af;
+  --dark: #112d4e;
+}
+
+
+body {
+  margin: 0;
+  background: var(--light);
+  color: var(--dark);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  font-family: Georgia, "Times New Roman", serif;
+}
+
+main {
+  flex: 1;
+  width: 100%;
+  max-width: 700px;
+  margin: 2.5rem auto;
+  padding: 0 1.5rem;
+  box-sizing: border-box;
+}

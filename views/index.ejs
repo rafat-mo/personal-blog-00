@@ -1,0 +1,44 @@
+<%- include("partials/header.ejs") %>
+
+  <% if (locals.css & locals.title) { %>
+    <link rel="stylesheet" href="/styles/<%= css %>">
+    <title>
+      <%= title %>
+    </title>
+    <% } %>
+      <main>
+        <% if(locals.posts) { %>
+          <ul>
+            <% posts.forEach((post)=> {%>
+              <li>
+                <div>
+                  <h3>
+                    <%= post.title %>
+                  </h3>
+                  <p>
+                    <%= post.postContent %>
+                  </p>
+                </div>
+                <div>
+                  <form action="/delete/<%= post.id %>" method="POST">
+                    <input type="hidden" name="postId" value="<%= post.id %>">
+                    <button>Delete</button>
+                  </form>
+                  <form action="/update/<%= post.id %>" method="GET">
+                    <input type="hidden" name="postId" value="<%= post.id %>">
+                    <button>Update</button>
+                  </form>
+                </div>
+              </li>
+              <% }); %>
+          </ul>
+          <% } else {%>
+            <h1>No posts available right now! </h1>
+            <form action="/create" method="GET">
+              <button class="custom-btn">Add Post</button>
+            </form>
+
+            <% } %>
+      </main>
+
+      <%- include("partials/footer.ejs") %>
