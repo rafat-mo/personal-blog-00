@@ -1,13 +1,13 @@
 <%- include("partials/header.ejs") %>
 
-  <% if (locals.css & locals.title) { %>
+  <% if (locals.css && locals.title) { %>
     <link rel="stylesheet" href="/styles/<%= css %>">
     <title>
       <%= title %>
     </title>
     <% } %>
       <main>
-        <% if(locals.posts) { %>
+        <% if (locals.posts && posts.length > 0) { %>
           <ul>
             <% posts.forEach((post)=> {%>
               <li>
@@ -16,7 +16,7 @@
                     <%= post.title %>
                   </h3>
                   <p>
-                    <%= post.postContent %>
+                    <%= post.content %>
                   </p>
                 </div>
                 <div>
