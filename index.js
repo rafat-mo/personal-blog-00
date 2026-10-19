@@ -6,7 +6,7 @@ app.use(express.static("public"));
 app.use(express.urlencoded({ extended: true }));
 
 app.get("/", (req, res) => {
-  res.render("index.ejs", { title: "Home Page", posts, css: "post.css" });
+  res.render("index.ejs", { title: "Home Page", posts, css: "main.css" });
 });
 
 app.get("/create", (req, res) => {
@@ -63,6 +63,10 @@ app.post("/update/:id", (req, res) => {
 
   res.redirect("/");
 });
+
+app.get("/about", (req, res) => {
+  res.render("about.ejs")
+})
 
 app.listen(port, () => {
   console.log(`Server is running at http://localhost:${port}`);

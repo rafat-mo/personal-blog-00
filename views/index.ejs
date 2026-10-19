@@ -7,38 +7,38 @@
     </title>
     <% } %>
       <main>
-        <% if (locals.posts && posts.length > 0) { %>
-          <ul>
-            <% posts.forEach((post)=> {%>
-              <li>
-                <div>
-                  <h3>
-                    <%= post.title %>
-                  </h3>
-                  <p>
-                    <%= post.content %>
-                  </p>
-                </div>
-                <div>
-                  <form action="/delete/<%= post.id %>" method="POST">
-                    <input type="hidden" name="postId" value="<%= post.id %>">
-                    <button>Delete</button>
-                  </form>
-                  <form action="/update/<%= post.id %>" method="GET">
-                    <input type="hidden" name="postId" value="<%= post.id %>">
-                    <button>Update</button>
-                  </form>
-                </div>
-              </li>
-              <% }); %>
-          </ul>
-          <% } else {%>
-            <h1>No posts available right now! </h1>
-            <form action="/create" method="GET">
-              <button class="custom-btn">Add Post</button>
-            </form>
+        <section class="posts" aria-labelledby="posts-heading">
+          <h2 id="posts-heading" class="posts__heading">Posts</h2>
 
-            <% } %>
+          <% if (posts.length===0) { %>
+            <p class="posts__empty">No posts yet. Create your first post to see it here.</p>
+            <% } else { %>
+              <ul class="post-list">
+                <% posts.forEach((post)=> { %>
+                  <li class="post">
+                    <article class="post__body">
+                      <h3 class="post__title">
+                        <%= post.title %>
+                      </h3>
+                      <p class="post__content">
+                        <%= post.content %>
+                      </p>
+                    </article>
+
+                    <div class="post__actions">
+                      <a class="btn btn--secondary" href="/update/<%= post.id %>">Edit</a>
+
+                      <form action="/delete/<%= post.id %>" method="POST"
+                        onsubmit="return confirm('Delete this post? This can’t be undone.');">
+                        <button type="submit" class="btn btn--danger">Delete</button>
+                      </form>
+                    </div>
+                  </li>
+                  <% }); %>
+              </ul>
+              <% } %>
+        </section>
+
       </main>
 
       <%- include("partials/footer.ejs") %>
